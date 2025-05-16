@@ -23,7 +23,7 @@ pipeline {
         stage('Build Project') {
             steps {
                 script {
-                    docker.image('maven:3.8.5-openjdk-17').inside {
+                    docker.image('maven:3.8.5-openjdk-17').inside("-v ${pwd()}:/app -w /app") {
                         sh 'mvn clean package'
                     }
                 }
